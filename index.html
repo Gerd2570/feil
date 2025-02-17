@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Vorschau</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: white;
+            padding: 10px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        nav ul li {
+            position: relative;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: darkblue;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ccc;
+        }
+        .submenu li {
+            margin: 0;
+        }
+        .submenu li a {
+            padding: 10px;
+            display: block;
+            white-space: nowrap;
+            color: darkblue;
+        }
+        .submenu li a:hover {
+            background-color: #ddd;
+        }
+        nav ul li:hover .submenu {
+            display: block;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+        .main-content {
+            flex: 3;
+            padding-right: 20px;
+        }
+        .sidebar {
+            flex: 1;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .logo img {
+            height: 40px;
+            vertical-align: middle;
+        }
+        .industry-table, .retail-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+        .industry-table th, .industry-table td, .retail-table th, .retail-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        .industry-table th, .retail-table th {
+            background-color: #e0e0e0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="logo"><a href="#"><img src="https://homh.de/bilder/intern/shoplogo/feil-logo.png" alt="Logo"></a></li>
+            <li><a href="#">Produkte</a></li>
+            <li>
+                <a href="#">Branchen</a>
+                <ul class="submenu">
+                    <li><a href="#" onclick="loadContent('industry')">Industry</a></li>
+                    <li><a href="#" onclick="loadContent('retail')">Retail</a></li>
+                    <li><a href="#">Food</a></li>
+                    <li><a href="#">Distribution</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Über uns</a></li>
+            <li><a href="#">Downloads</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Shop</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="main-content" id="content">
+            <h1>Willkommen auf unserer Website</h1>
+            <p>Hier kannst du Inhalte einfügen.</p>
+        </div>
+        <div class="sidebar" id="sidebar-content">
+        </div>
+    </div>
+    <script>
+        function loadContent(page) {
+            let content = "";
+            let sidebarContent = "";
+            if (page === "industry") {
+                content = `<h1>Industry</h1>`;
+                sidebarContent = `<table class="industry-table">
+                    <tr><th>Industry</th></tr>
+                    <tr><td><strong>Stabil und belastbar</strong><br>Bis zu 500 kg Gesamtgewicht</td></tr>
+                    <tr><td><strong>Deichsel- / Kupplungssystem</strong><br>Alle Behälter sind routenzugfähig</td></tr>
+                    <tr><td><strong>100%ige Modularität</strong><br>Individuell konfigurierbar mit vielseitigen Standardbauteilen</td></tr>
+                    <tr><td><strong>Innenpolsterung</strong><br>Ideal für den Transport druckempfindlicher Teile</td></tr>
+                    <tr><td><strong>ESD Rollen</strong><br>Optimaler Schutz vor elektrostatischer Entladung</td></tr>
+                    <tr><td><strong>Zugriffsgeschützt</strong><br>Verschließbare Behälter, optional mit Sichtschutz</td></tr>
+                    <tr><td><strong>Barcode, QR Code und RFID-fähig</strong><br>100%ige Transparenz und Verfolgbarkeit</td></tr>
+                </table>`;
+            } else if (page === "retail") {
+                content = `<h1>Retail</h1>`;
+                sidebarContent = `<table class="retail-table">
+                    <tr><th>Retail</th></tr>
+                    <tr><td><strong>Barcode, QR Code und RFID-fähig</strong><br>Präzise effiziente Nachverfolgung und Bestandsverwaltung</td></tr>
+                    <tr><td><strong>Rollbehälter als Verkaufsdisplay</strong><br>Kein Umpacken, direkt im Verkaufsraum nutzbar</td></tr>
+                    <tr><td><strong>Platzsparend</strong><br>Nestbar / stapelbar bis zu 5:1</td></tr>
+                    <tr><td><strong>Schallreduzierte Rollen</strong><br>Geräuscharme Nachtbelieferung, keine Störgeräusche im Markt</td></tr>
+                    <tr><td><strong>Anti Diebstahlbehälter</strong><br>Schutz vor Diebstahl hochpreisiger Waren und Sichtschutz</td></tr>
+                    <tr><td><strong>Geeignet für Kettenförderanlagen</strong><br>Vorbereitet für automatische Transportsysteme</td></tr>
+                    <tr><td><strong>Nachhaltige Langlebigkeit</strong><br>Spezielle Wabenstruktur sorgt für hohe Verwindungssteifigkeit</td></tr>
+                </table>`;
+            }
+            document.getElementById("content").innerHTML = content;
+            document.getElementById("sidebar-content").innerHTML = sidebarContent;
+        }
+    </script>
+</body>
+</html>
